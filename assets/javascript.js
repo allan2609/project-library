@@ -50,3 +50,26 @@ function displayLibrary() {
 }
 
 displayLibrary();
+
+const dialog = document.getElementById("dialog");
+const newButton = document.querySelector(".new");
+const addButton = document.querySelector(".add");
+const closeButton = document.querySelector(".close");
+
+newButton.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+addButton.addEventListener("click", () => {
+  const titleInput = document.querySelector("#new-title").value;
+  const authorInput = document.querySelector("#new-author").value;
+  const pagesInput = document.querySelector("#new-pages").value;
+  const readInput = document.querySelector("#new-read").value;
+  let newEntry = new Book(titleInput, authorInput, pagesInput, readInput);
+  addBookToLibrary(newEntry);
+  displayLibrary();
+});
+
+closeButton.addEventListener("click", () => {
+  dialog.close();
+});
