@@ -21,7 +21,29 @@ const aStormOfSwords = new Book("A Storm of Swords", "George R. R. Martin", 973,
 addBookToLibrary(aStormOfSwords);
 
 function addBookToLibrary(book) {
+  const booksList = document.querySelector(".books");
   myLibrary.push(book);
+  let index = myLibrary.indexOf((book));
+  console.log(index);
+  const item = document.createElement("span");
+  item.className = "item";
+  const title = document.createElement("div");
+  title.className = "title";
+  const author = document.createElement("div");
+  author.className = "author";
+  const pages = document.createElement("div");
+  pages.className = "pages";
+  const read = document.createElement("div");
+  read.className = "read";
+  item.appendChild(title);
+  title.textContent = myLibrary[index].title;
+  item.appendChild(author);
+  author.textContent = myLibrary[index].author;
+  item.appendChild(pages);
+  pages.textContent = myLibrary[index].pages;
+  item.appendChild(read);
+  read.textContent = myLibrary[index].read;
+  booksList.appendChild(item);
 }
 
 function displayLibrary() {
@@ -49,8 +71,6 @@ function displayLibrary() {
   };
 }
 
-displayLibrary();
-
 const dialog = document.getElementById("dialog");
 const newButton = document.querySelector(".new");
 const addButton = document.querySelector(".add");
@@ -67,7 +87,6 @@ addButton.addEventListener("click", () => {
   const readInput = document.querySelector("#new-read").value;
   let newEntry = new Book(titleInput, authorInput, pagesInput, readInput);
   addBookToLibrary(newEntry);
-  displayLibrary();
 });
 
 closeButton.addEventListener("click", () => {
