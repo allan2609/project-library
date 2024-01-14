@@ -30,6 +30,7 @@ h1 {
   color: black;
   min-width: 100%;
   min-height: 100vh;
+  background-color: #fafcf5;
 }
 
 .header {
@@ -42,7 +43,8 @@ h1 {
 
 .new {
   display: flex;
-  max-width: 6rem;
+  width: 9rem;
+  height: 4rem;
   justify-content: center;
   border: 0.25rem solid #4ceb34;
   border-radius: 0.5rem;
@@ -64,8 +66,17 @@ h1 {
 }
 
 .books {
-  background-color: #fafcf5;
   padding: 1rem;
+}
+
+.remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove svg {
+  height: 1.2rem;
 }
 
 dialog {

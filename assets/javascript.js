@@ -35,6 +35,9 @@ function addBookToLibrary(book) {
   pages.className = "pages";
   const read = document.createElement("div");
   read.className = "read";
+  const remove = document.createElement("div");
+  const removeIcon = '<svg viewBox="0 0 24 24"><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" /></svg>';
+  remove.className = "remove";
   item.appendChild(title);
   title.textContent = myLibrary[index].title;
   item.appendChild(author);
@@ -43,6 +46,8 @@ function addBookToLibrary(book) {
   pages.textContent = myLibrary[index].pages;
   item.appendChild(read);
   read.textContent = myLibrary[index].read;
+  item.appendChild(remove);
+  remove.innerHTML = removeIcon;
   booksList.appendChild(item);
 }
 
@@ -92,3 +97,13 @@ addButton.addEventListener("click", () => {
 closeButton.addEventListener("click", () => {
   dialog.close();
 });
+
+const removeButton = document.getElementsByClassName("remove");
+for (let i = 0 ; i < removeButton.length; i++) {
+  let removedBook = removeButton[i].parentNode;
+  removeButton[i].addEventListener("click", () => {
+    myLibrary.pop[i];
+    removedBook.remove();
+    console.log("removing book" + i)
+  }); 
+}
