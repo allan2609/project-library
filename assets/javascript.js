@@ -24,7 +24,6 @@ function addBookToLibrary(book) {
   const booksList = document.querySelector(".books");
   myLibrary.push(book);
   let index = myLibrary.indexOf((book));
-  console.log(index);
   const item = document.createElement("span");
   item.className = "item";
   const title = document.createElement("div");
@@ -51,7 +50,7 @@ function addBookToLibrary(book) {
   booksList.appendChild(item);
 }
 
-function displayLibrary() {
+/*function displayLibrary() {
   const booksList = document.querySelector(".books");
   for (let i = 0; i < myLibrary.length; i++) {
     const item = document.createElement("span");
@@ -74,7 +73,7 @@ function displayLibrary() {
     read.textContent = myLibrary[i].read;
     booksList.appendChild(item);
   };
-}
+}*/
 
 const dialog = document.getElementById("dialog");
 const newButton = document.querySelector(".new");
@@ -102,7 +101,7 @@ const removeButton = document.getElementsByClassName("remove");
 for (let i = 0 ; i < removeButton.length; i++) {
   let removedBook = removeButton[i].parentNode;
   removeButton[i].addEventListener("click", () => {
-    myLibrary.pop[i];
+    myLibrary.pop(i);
     removedBook.remove();
     console.log("removing book" + i)
   }); 
