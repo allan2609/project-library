@@ -67,9 +67,7 @@ function addFirstBooks() {
 
     remove.addEventListener("click", event => {
       event.target.closest(".remove").parentNode.remove();
-      myLibrary = myLibrary.filter(v => v[1] !== event.target.closest(".remove"));
-      console.log("deleting: " + myLibrary[i][0].title);
-      //myLibrary.pop(i);
+      myLibrary.splice(i, 1);
     });
 
     booksList.appendChild(item);
