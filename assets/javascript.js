@@ -26,8 +26,6 @@ function Book(title, author, pages, read) {
   this.id = Math.random();
 }
 
- 
-
 function renderLibrary() {
   clear();
 
