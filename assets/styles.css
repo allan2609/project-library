@@ -19,6 +19,31 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  }
+
+svg:hover {
+  transform: scale(1.4);
+}
+svg {
+  transition: all 0.7s;
+  transform-origin: 50% 50%;
+}
+
 h1 {
   font-size: 2rem;
   font-weight: bold;
@@ -26,7 +51,7 @@ h1 {
 
 .container {
   display: grid;
-  grid-template-rows: fit-content(8rem) 4rem auto;
+  grid-template-rows: fit-content(8rem) auto;
   color: black;
   min-width: 100%;
   min-height: 100vh;
@@ -36,37 +61,80 @@ h1 {
 .header {
   display: flex;
   justify-content: center;
-  background-color: lightgray;
+  background-color: #f5f5f5;
   grid-row: 1 / 2;
   padding: 1rem;
+  box-shadow: 1px 0px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.new-button-container {
+  display: flex;
+  width: 100%;
+  padding: 1.5rem;
 }
 
 .new {
   display: flex;
-  width: 9rem;
-  height: 4rem;
+  color: white;
+  font-weight: bold;
+  width: 10rem;
+  height: 3.5rem;
   justify-content: center;
-  border: 0.25rem solid #4ceb34;
+  align-content: center;
+  flex-wrap: wrap;
+  border: 0.25rem solid #596D48;
   border-radius: 0.5rem;
   font-size: 1.25rem;
   padding: 0.5rem;
-  margin-bottom: 1rem;
-  background-color: white;
+  background-color: #596D48;
+}
+
+.new:hover {
+  background-color: #36b558;
+  border: 1px solid #36b558;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  width: min(64rem, 100%);
+  justify-self: center;
+}
+
+.readButton {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  font-size: 1rem;
+  background-color: #f7f7f5;
+  border: 1px solid #E5E7EB;
+  border-radius: 0.5rem;
+  height: 100%;
+  width: 5rem;
 }
 
 .titles {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .item, .titles {
-  width: 100%;
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr 1fr 2rem;
-  gap: 2rem;
+  grid-template-columns: 3fr 3fr 1fr 6rem 3rem;
 }
 
 .books {
   padding: 1rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.15rem;
+  gap: 1rem;
 }
 
 .remove {
@@ -76,57 +144,7 @@ h1 {
 }
 
 .remove svg {
-  height: 1.2rem;
-}
-
-dialog {
-  animation: fade-out 0.7s ease-out;
-}
-
-dialog[open] {
-  animation: fade-in 0.7s ease-out;
-}
-
-dialog[open]::backdrop {
-  animation: backdrop-fade-in 0.7s ease-out forwards;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-    transform: scaleY(0);
-    display: none;
-  }
-
-  100% {
-    opacity: 1;
-    transform: scaleY(1);
-    display: block;
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-    transform: scaleY(1);
-    display: block;
-  }
-
-  100% {
-    opacity: 0;
-    transform: scaleY(0);
-    display: none;
-  }
-}
-
-@keyframes backdrop-fade-in {
-  0% {
-    background-color: rgb(0 0 0 / 0);
-  }
-
-  100% {
-    background-color: rgb(0 0 0 / 0.25);
-  }
+  height: 1.3rem;
 }
 
 .form {

@@ -6,7 +6,7 @@ const myLibrary = [
   new Book("A Dance With Dragons", "George R. R. Martin", 1016, false),
 ];
 
-const booksList = document.querySelector(".books");
+const booksList = document.querySelector(".list");
 const dialog = document.getElementById("dialog");
 const newButton = document.querySelector(".new");
 const addButton = document.querySelector(".add");
@@ -16,20 +16,29 @@ function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.read = Boolean(read);
+  this.read = read;
   this.info = function() {
-    return this.title + " by " + this.author + ". " + this.pages + " pages." + " Read? " + this.read;
+    return this.title + " by " + this.author + ". " + this.pages + " pages." + " Read? " + this.read
   };
   this.changeStatus = () => {
-    this.read = read ? false : true;
+    this.read = !this.read;
   };
   this.id = Math.random();
 }
 
 function renderLibrary() {
   clear();
-
   myLibrary.forEach(book => {
+
+    function fillReadButton() {
+      book.read ? readButton.textContent = "Read" : readButton.textContent = "Unread";
+      book.read ? readButton.style.color = "black" : readButton.style.color = "red";
+    }
+
+    function changeStatus() {
+      book.read = !book.read;
+      fillReadButton();
+    }
 
     const item = document.createElement("span");
     item.className = "item";
@@ -47,6 +56,11 @@ function renderLibrary() {
     const read = document.createElement("div");
     read.className = "read";
 
+    const readButton = document.createElement("div");
+    readButton.className = "readButton";
+    read.appendChild(readButton);
+    readButton.addEventListener("click", changeStatus);
+
     const remove = document.createElement("div");
     const removeIcon = '<svg viewBox="0 0 24 24"><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" /></svg>';
     remove.className = "remove";
@@ -56,7 +70,7 @@ function renderLibrary() {
     title.textContent = book.title;
     author.textContent = book.author;
     pages.textContent = book.pages;
-    read.textContent = book.read;
+    fillReadButton();
 
     item.appendChild(title);
     item.appendChild(author);
@@ -88,14 +102,29 @@ newButton.addEventListener("click", () => {
 addButton.addEventListener("click", () => {
   const titleInput = document.querySelector("#new-title").value;
   const authorInput = document.querySelector("#new-author").value;
-  const pagesInput = document.querySelector("#new-pages").value;
-  const readInput = document.querySelector("#new-read").value;
+  const pagesInput = Number(document.querySelector("#new-pages").value);
+  const readInput = Boolean(document.querySelector("#new-read").checked);
+
+  const remove = document.createElement("div");
+  const removeIcon = '<svg viewBox="0 0 24 24"><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" /></svg>';
+  remove.className = "remove";
+  remove.innerHTML = removeIcon;
+
   myLibrary.push(new Book(titleInput, authorInput, pagesInput, readInput));
+
   renderLibrary();
 });
 
 closeButton.addEventListener("click", () => {
   dialog.close();
 });
+
+dialog.addEventListener("click", onClick);
+
+function onClick(event) {
+  if (event.target === dialog) {
+    dialog.close();
+  }
+}
 
 renderLibrary();
