@@ -17,12 +17,6 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.info = function() {
-    return this.title + " by " + this.author + ". " + this.pages + " pages." + " Read? " + this.read
-  };
-  this.changeStatus = () => {
-    this.read = !this.read;
-  };
   this.id = Math.random();
 }
 
@@ -57,7 +51,8 @@ function renderLibrary() {
     read.className = "read";
 
     const readButton = document.createElement("div");
-    readButton.className = "readButton";
+    readButton.className = "read-button";
+
     read.appendChild(readButton);
     readButton.addEventListener("click", changeStatus);
 
@@ -104,15 +99,15 @@ addButton.addEventListener("click", () => {
   const authorInput = document.querySelector("#new-author").value;
   const pagesInput = Number(document.querySelector("#new-pages").value);
   const readInput = Boolean(document.querySelector("#new-read").checked);
-
   const remove = document.createElement("div");
   const removeIcon = '<svg viewBox="0 0 24 24"><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" /></svg>';
   remove.className = "remove";
   remove.innerHTML = removeIcon;
 
-  myLibrary.push(new Book(titleInput, authorInput, pagesInput, readInput));
-
-  renderLibrary();
+  if (validateForm()) {
+    myLibrary.push(new Book(titleInput, authorInput, pagesInput, readInput));
+    renderLibrary();
+  }
 });
 
 closeButton.addEventListener("click", () => {
@@ -125,6 +120,25 @@ function onClick(event) {
   if (event.target === dialog) {
     dialog.close();
   }
-}
+};
+
+function validateForm() {
+  const titleInput = document.querySelector("#new-title").value;
+  const authorInput = document.querySelector("#new-author").value;
+  const pagesInput = Number(document.querySelector("#new-pages").value);
+
+  if (titleInput.length < 3 || authorInput.length < 3) {
+    alert("Title and author must be filled out");
+    return false;
+  } else if (titleInput.length > 22 || authorInput.length > 20) {
+    alert("Title or author name too long");
+    return false;
+  } else if (!titleInput == "" && !authorInput == "" && pagesInput < 1 || pagesInput > 99999) {
+    alert("Pages field must contain whole numbers");
+    return false;
+  } else {
+    return true;
+  }
+};
 
 renderLibrary();
