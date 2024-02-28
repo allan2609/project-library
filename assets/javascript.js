@@ -1,3 +1,13 @@
+class Book {
+  constructor (title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.id = Math.random();
+  }
+}
+
 const myLibrary = [
   new Book("A Game of Thrones", "George R. R. Martin", 694, true),
   new Book("A Clash of Kings", "George R. R. Martin", 708, false),
@@ -11,14 +21,6 @@ const dialog = document.getElementById("dialog");
 const newButton = document.querySelector(".new");
 const addButton = document.querySelector(".add");
 const closeButton = document.querySelector(".close");
-
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.id = Math.random();
-}
 
 function renderLibrary() {
   clear();
